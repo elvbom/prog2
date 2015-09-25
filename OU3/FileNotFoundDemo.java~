@@ -1,0 +1,12 @@
+import java.io.*;
+
+public class FileNotFoundDemo { 
+  /**
+   * Open the file whose name is given as argument to the method.
+   * 
+   * @param fileName Path to file to open
+   */
+  static void openFile(String fileName) throws FileNotFoundException {
+    BufferedReader reader = new BufferedReader(new FileReader(fileName));
+    //...
+  }

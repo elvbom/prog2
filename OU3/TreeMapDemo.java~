@@ -1,0 +1,28 @@
+  import java.util.Scanner;
+  import java.util.Map;
+  import java.util.TreeMap;
+  import java.io.*;
+
+  public class TreeMapDemo {
+
+    public static void main(String[] args) throws IOException {
+
+      String filename = "vandrare.utf8";       // Name of input file
+      File input = new File(filename);         // a File object
+      Scanner sc = new Scanner(input,"UTF-8"); // Connect a Scanner object to the file
+
+      Map<String,Integer> f = new TreeMap<String,Integer>();
+
+      while(sc.hasNext()) {           // As long as there are more things on the file
+        String w = sc.next();         // read the 'thing'
+        if (f.containsKey(w)) {       // if w already is stored in f
+          int i = f.get(w);           //   get its frequence
+          f.put(w, new Integer(i+1)); //   and store an increased frequence
+        } else {                      // else
+          f.put(w, new Integer(1));   //   store a new word with frequence 1
+        }
+      }
+      System.out.println(f);          // Primitive output (toString())
+    }
+  } 
+
