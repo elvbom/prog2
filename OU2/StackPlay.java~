@@ -1,13 +1,17 @@
+import java.util.*;
+
 public class StackPlay {
    private long move;
-   private ArrayList<int> stack;
+   private ArrayList<Integer> stack;
+   
    /**
     * Returns the current number of times the method move
     * has been called
     * @return the number of calls
     */
    public static long getNumberOfCalls() {
-     return move;
+     return 0;
+     //return move;
    }
    
    /**
@@ -24,7 +28,7 @@ public class StackPlay {
                            SpecialStack help, 
                            int n) 
    {
-      move = move + 1; 
+      //move = move + 1; 
    }
    
    
@@ -38,12 +42,12 @@ public class StackPlay {
       System.out.println("   From: " + from);
       System.out.println("   To:   " + to);
       System.out.println("   Help: " + help);
-      System.out.println("   Number of calls: " + getNumberOfCalls());
-      move(from, to, help, size);
+      //System.out.println("   Number of calls: " + getNumberOfCalls());
+      //move(from, to, help, size);
       System.out.println("End state");
       System.out.println("   From: " + from);
       System.out.println("   To:   " + to);
       System.out.println("   Help: " + help);
-      System.out.println("   Number of calls: " + getNumberOfCalls());
+      //System.out.println("   Number of calls: " + getNumberOfCalls());
    }
 }

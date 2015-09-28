@@ -84,12 +84,21 @@ public class Recursion {
       return fib(n-1) + fib(n-2);
   }
   
+  public static void fibTime(int n) {
+    long startTime = System.currentTimeMillis();
+    fib(n);
+    long endTime = System.currentTimeMillis();
+    long timeDiff = (endTime- startTime)/1000;
+    System.out.println("Fib took " + timeDiff +"s");
+    
+  }  
+  
   public static void sort(double [] a, int n) {
-    if ( n > 1 ) {
+    if (n > 1) {
       sort( a, n-1 );
       double x = a[n-1];
       int i = n-2;
-      while ( i>=0 && a[i]>x ) {
+      while (i >= 0 && a[i] > x) {
         a[i+1] = a[i];
         i--;
       }
@@ -97,11 +106,8 @@ public class Recursion {
     }
   }
   
-  // FIXME kolla hur lang tid fib(50) och fib(100 tar)
-  
   // FIXME ovning 12!
   
-  //FIXME?
   static String reverseInt(int x) {
     String xstr = "" + x;
     String xrev = "";
@@ -142,5 +148,6 @@ public class Recursion {
       return rev;
     }
   }
+  
   
 }
