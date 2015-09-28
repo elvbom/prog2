@@ -1,0 +1,15 @@
+import java.util.Map;
+
+public class Evaluation extends Operator {
+  public Evaluation(Sexpr argument) {
+    super(argument);
+  }
+  
+  public String getName() {
+    return "&";
+  }
+  
+  public Sexpr eval(Map<String, Sexpr> map) {
+    return argument.eval(map).eval(map);
+  }
+}

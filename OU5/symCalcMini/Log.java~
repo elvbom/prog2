@@ -1,0 +1,23 @@
+/**
+ * Represents an addition operation
+ */
+import java.util.Map;
+
+public class Log extends Function {
+  
+  public Log(Sexpr argument) {
+    super(argument);
+  }
+  
+  public String getName() {
+    return "log";
+  }
+
+  public Sexpr eval(Map<String,Sexpr> map) {
+    return Symbolic.log(argument.eval(map));
+  }
+  
+  public Sexpr diff(Sexpr v) {
+return Symbolic.div(new Constant(1), argument);
+}
+}

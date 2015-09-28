@@ -1,0 +1,24 @@
+/**
+ * Represents an cosine operation
+ */
+import java.util.Map;
+
+public class Cos extends Function {
+  
+  public Cos(Sexpr argument) {
+    super(argument);
+  }
+  
+  public String getName() {
+    return "cos";
+  }
+  
+  public Sexpr eval(Map<String,Sexpr> map) {
+    return Symbolic.cos(argument.eval(map));
+  }
+  
+  public Sexpr diff(Sexpr variable){
+    return Symbolic.negate(Symbolic.mul(argument.diff(variable), new Sin(argument)));
+  }
+  
+}

@@ -16,20 +16,7 @@ public abstract class Binary
    * The toString-method should be refined so that parentheses are used only when needed
    */
   public String toString() {
-    String result;
-    if (left.priority() < priority()) {
-      result = "(" + left + ")";
-    } else {
-      result = left.toString();
-    }
-    if (right.priority() <= priority()) {
-      result = result + getName() + 
-      "(" + right + ")";
-    } else {
-      result = result + getName() + right;
-    }
-    return result;
+    return "(" + left + ")" + getName() + "(" + right + ")"; 
   }
-
 }
   
