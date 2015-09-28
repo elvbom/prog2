@@ -66,9 +66,9 @@ public class Recursion {
   }
   
   public static void bricklek(char from, char to, char help, int n) {
-    if (n==1)
+    if (n == 1) {
       System.out.println(from +"->"+to);
-    else{
+    } else {
       bricklek(from, help, to, n-1);
       System.out.println(from + "->" + to);
       bricklek(help, to, from, n-1);
