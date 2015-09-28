@@ -314,27 +314,32 @@ public class List {
    * Should run in O(n) time if the list is of length n.
    */
   
-  //FIXME fran borjan
   public void insertIter(int x) {
-    if (first == null) {
-      first = new Node(x, null);
-      System.out.println(first);
+    if (first == null || x < first.data) {
+      first = new Node(x, first);
+    } else if(first.next == null && x > first.data) {
+      Node m = new Node(x, null);
+      first.next = m;
     } else {
       Node n = first;
+      Node m = first.next;
       while(n != null) {
-        if (x != n.data) { //om f och x ar samma h'nder inget
-          if (x < n.data) { //x ar storre an n. det ska fortsatta
-            n = n.next;
-          } else if (x > n.data) { //x ar storre an n, ska in
-            Node nx = new Node(x, n.next);
-            n.next = nx;
-          }
+        if (x < m.data) {
+          Node o = new Node(x, m);
+          n.next = o;
+          break;
+        } else if (m.next == null) {
+          Node o = new Node(x, null);
+          m.next = o;
+          break;
         } else {
+          n = n.next;
+          m = m.next;
         }
       }
     }
-  }
-  
+  } 
+    
   
   /** 
    * Clear the list, i.e. removes alla element from the list. 

@@ -151,19 +151,7 @@ public class BinarySearchTree {
   
   private String smallest(Node n) {
     if (n.left != null) {
-      if (n.key.compareTo(n.left.key) == 0 || n.key.compareTo(n.left.key) < 0) {
-        return n.key;
-      } else if (n.key.compareTo(n.left.key) > 0) {
-        return n.left.key;
-      }
-    } else if (n.right != null) {
-      if (n.key.compareTo(n.right.key) == 0 || n.key.compareTo(n.right.key) < 0) {
-        return n.key;
-      } else if (n.key.compareTo(n.right.key) > 0) {
-        return n.right.key;
-      }
-    } else {
-      return n.key;
+      return smallest(n.left);
     }
     return n.key;
   }
@@ -231,18 +219,15 @@ public class BinarySearchTree {
   private boolean equals(Node n, Node m) {
     if (n == null && m == null) {
       return true;
-    } else if ((n.left == null && m.left != null) || (n.right != null && m.right == null)) {
+    } else if (n == null || m == null) {
       return false;
-    } else if (n.key.compareTo(m.key) == 0 && (n.left == null && m.left == null) && (n.right == null || m.right == null)) {
-      return true;
+    } else if (n.key.compareTo(m.key) != 0) {
+      return false;
     } else {
-      if (n.key.compareTo(m.key) == 0 && equals(n.left, m.left) && equals(n.right, m.right)) {
-        return true;
-      } else { 
-        return false;
-      }
+      return equals(n.left, m.left) && equals(n.right, m.right);
     }
   }
+  
   /**
    * Check if two trees have exactly the same contents
    * @param t the tree to be compared with

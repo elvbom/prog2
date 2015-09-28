@@ -180,17 +180,13 @@ public class List {
   
   public boolean containsIter(int x) {
     Node n = first;
-    if (first == null) {
-      return false;
-    } else {
-      while (n != null) {
-        if (n.data == x) {
-          return true;
-        } else {
-          n = n.next;
-        }
-      } 
-    }
+    while (n != null) {
+      if (n.data == x) {
+        return true;
+      } else {
+        n = n.next;
+      }
+    } 
     return false; 
   }
   
@@ -349,13 +345,7 @@ public class List {
    */
   
   public void clear() {
-    if (first == null)
-      throw new ListException("List is already empty");
-    else {
-      while (first != null) {
-        first = first.next;
-      }
-    }
+    first = null;
   }
   
   
@@ -483,6 +473,8 @@ public class List {
       intersection(a.next, l, listInter);
     }
   }
+  
+  //noder ger battre snabbare snitt kolla pa
   
   /**
    * Check if two lists contain the same data items

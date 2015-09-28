@@ -22,7 +22,9 @@ public class SpecialStack {
   //  Pushes a number on the stack.
   //Throws: RuntimeException - if number to be pushed is higher than the number on the stack top
   public void push(int x) {
-    if (x > specStack.get(specStack.size())) {
+    if (specStack.size() == 0) {
+      specStack.add(x);
+    } else if (x > specStack.get(specStack.size() - 1)) {
       throw new RuntimeException("Number to be pushed is too high!");
     } else {
       specStack.add(x);
@@ -36,7 +38,7 @@ public class SpecialStack {
     if (specStack.size() == 0) {
       throw new RuntimeException("Stack is empty!");
     } else {
-      int length = specStack.size();
+      int length = specStack.size() - 1;
       int topEl = specStack.get(length);
       specStack.remove(length);
       return topEl;

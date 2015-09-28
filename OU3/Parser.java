@@ -121,9 +121,7 @@ public class Parser {
         }
       } else if (tokenizer.getChar() == '/') {
         tokenizer.nextToken();
-        if (tokenizer.getToken().equals("0.0")) {
-          throw new EvaluationException("Division with zero not permitted");
-        } else if (tokenizer.isEOL()) {
+        if (tokenizer.isEOL()) {
           throw new SyntaxException(synExc + "Expected number or bracket" + 
                                   synExc1 + tokenizer.getToken() + 
                                   synExc2 + tokenizer.getPreviousToken());
@@ -137,10 +135,15 @@ public class Parser {
                                   synExc2 + tokenizer.getPreviousToken());
         } else if (tokenizer.getChar() == '/' ) {
           throw new SyntaxException(synExc + "Expected number or bracket" + 
-                                  synExc1 + tokenizer.getToken() + 
-                                  synExc2 + tokenizer.getPreviousToken());
+                                    synExc1 + tokenizer.getToken() + 
+                                    synExc2 + tokenizer.getPreviousToken());
         } else {
-          prod /= factor();
+          double d = factor();
+          if (d == 0) {
+            throw new EvaluationException("Division with zero not permitted");
+          } else {
+            prod /= d;
+          }
         }
       }
     }

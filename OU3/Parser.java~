@@ -18,7 +18,10 @@ import java.util.*;
  */
 public class Parser {
   Stokenizer tokenizer;
-  Map<String, Double> variables;
+  Map<String,Double> variables = new TreeMap<String,Double>();
+  String synExc = "*** Syntax error. ";
+  String synExc1 = "\nThe error occured at token";
+  String synExc2 = "just after token";
   
   public Parser(Stokenizer tokenizer, Map<String,Double> variables) {
     this.tokenizer = tokenizer;
@@ -31,12 +34,14 @@ public class Parser {
       tokenizer.nextToken();
       if (tokenizer.isWord()) {
         variables.put(tokenizer.getWord(), result);
-        variables.put("ans", result);
       } else {
-        throw new SyntaxException("'=' should be followed by variable");
+        throw new SyntaxException(synExc + "'=' should be followed by variable" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
       }
       tokenizer.nextToken();
     }
+    variables.put("ans", result);
     return result;  
   }
   
@@ -46,32 +51,47 @@ public class Parser {
       if (tokenizer.getChar() == '+') {
         tokenizer.nextToken();
         if (tokenizer.isEOL()){
-          throw new SyntaxException("Expected number or bracket");
+          throw new SyntaxException(synExc + "Expected number or bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
         } else if (tokenizer.getChar() == '+' ) {
-          throw new SyntaxException("Expected number or bracket");
+          throw new SyntaxException(synExc + "Expected number or bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
         } else if (tokenizer.getChar() == '*' ) {
-          throw new SyntaxException("Expected number or bracket");
+          throw new SyntaxException(synExc + "Expected number or bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
         } else if (tokenizer.getChar() == '/' ) {
-          throw new SyntaxException("Expected number or bracket");
+          throw new SyntaxException(synExc + "Expected number or bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
         } else {
           sum += term();
         }
       } else if (tokenizer.getChar() == '-') {
         tokenizer.nextToken();
         if (tokenizer.isEOL()){
-          throw new SyntaxException("Expected number or bracket");
+          throw new SyntaxException(synExc + "Expected number or bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
         } else if (tokenizer.getChar() == '+' ) {
-          throw new SyntaxException("Expected number or bracket");
+          throw new SyntaxException(synExc + "Expected number or bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
         } else if (tokenizer.getChar() == '*' ) {
-          throw new SyntaxException("Expected number or bracket");
+          throw new SyntaxException(synExc + "Expected number or bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
         } else if (tokenizer.getChar() == '/' ) {
-          throw new SyntaxException("Expected number or bracket");
+          throw new SyntaxException(synExc + "Expected number or bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
         } else {
           sum -= term();
         }
       }
     }
-    variables.put("ans", sum);
     return sum;
   }
   
@@ -81,13 +101,21 @@ public class Parser {
       if (tokenizer.getChar() == '*') {
         tokenizer.nextToken();
         if (tokenizer.isEOL()){
-          throw new SyntaxException("Expected number or bracket");
+          throw new SyntaxException(synExc + "Expected number or bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
         } else if (tokenizer.getChar() == '+' ) {
-          throw new SyntaxException("Expected number or bracket");
+          throw new SyntaxException(synExc + "Expected number or bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
         } else if (tokenizer.getChar() == '*' ) {
-          throw new SyntaxException("Expected number or bracket");
+          throw new SyntaxException(synExc + "Expected number or bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
         } else if (tokenizer.getChar() == '/' ) {
-          throw new SyntaxException("Expected number or bracket");
+          throw new SyntaxException(synExc + "Expected number or bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
         } else {
           prod *= factor();
         }
@@ -96,19 +124,26 @@ public class Parser {
         if (tokenizer.getToken().equals("0.0")) {
           throw new EvaluationException("Division with zero not permitted");
         } else if (tokenizer.isEOL()) {
-          throw new SyntaxException("Expected number or bracket");
+          throw new SyntaxException(synExc + "Expected number or bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
         } else if (tokenizer.getChar() == '+' ) {
-          throw new SyntaxException("Expected number or bracket");
+          throw new SyntaxException(synExc + "Expected number or bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
         } else if (tokenizer.getChar() == '*' ) {
-          throw new SyntaxException("Expected number or bracket");
+          throw new SyntaxException(synExc + "Expected number or bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
         } else if (tokenizer.getChar() == '/' ) {
-          throw new SyntaxException("Expected number or bracket");
+          throw new SyntaxException(synExc + "Expected number or bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
         } else {
           prod /= factor();
         }
       }
     }
-    variables.put("ans", prod);
     return prod;
   } 
   
@@ -122,10 +157,11 @@ public class Parser {
       double result = assignment();        
       if (tokenizer.getChar() == ')' ) {
         tokenizer.nextToken();
-        variables.put("ans", result);
         return result;
       } else {
-        throw new SyntaxException("Expected closing bracket expected");
+        throw new SyntaxException(synExc + "Expected closing bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
       }
     } else if (tokenizer.isWord() == true) {
       if (variables.containsKey(tokenizer.getWord()) == true) {
@@ -139,13 +175,16 @@ public class Parser {
           double result = Math.exp(assignment());
           if (tokenizer.getChar() == ')') {
             tokenizer.nextToken();
-            variables.put("ans", result);
             return result;
           } else {
-            throw new SyntaxException("Expected closing bracket");
+            throw new SyntaxException(synExc + "Expected closing bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
           }
         } else {
-          throw new SyntaxException("Expected bracket");
+          throw new SyntaxException(synExc + "Expected bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
         }
       } else if (tokenizer.getWord().equals("log")) {
         tokenizer.nextToken();
@@ -154,13 +193,16 @@ public class Parser {
           double result = Math.log(this.assignment());
           if (tokenizer.getChar() == ')') {
             tokenizer.nextToken();
-            variables.put("ans", result);
             return result;
           } else {
-            throw new SyntaxException("Expected closing bracket");
+            throw new SyntaxException(synExc + "Expected closing bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
           }
         } else {
-          throw new SyntaxException("Expected bracket");
+          throw new SyntaxException(synExc + "Expected bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
         }
       } else if (tokenizer.getWord().equals("sin")) {
         tokenizer.nextToken();
@@ -169,13 +211,16 @@ public class Parser {
           double result = Math.sin(assignment());
           if (tokenizer.getChar() == ')') {
             tokenizer.nextToken();
-            variables.put("ans", result);
             return result;
           } else {
-            throw new SyntaxException("Expected closing bracket");
+            throw new SyntaxException(synExc + "Expected closing bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
           }
         } else {
-          throw new SyntaxException("Expected bracket");
+          throw new SyntaxException(synExc + "Expected bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
         }
       } else if (tokenizer.getWord().equals("cos")) {
         tokenizer.nextToken();
@@ -184,16 +229,19 @@ public class Parser {
           double result = Math.cos(this.assignment());
           if (tokenizer.getChar() == ')') {
             tokenizer.nextToken();
-            variables.put("ans", result);
             return result;
           } else {
-            throw new SyntaxException("Expected closing bracket");
+            throw new SyntaxException(synExc + "Expected closing bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
           }
         } else {
-          throw new SyntaxException("Expected bracket");
+          throw new SyntaxException(synExc + "Expected bracket" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
         }
       } else {
-        throw new SyntaxException("Not valid input: " + tokenizer.getToken());
+        throw new EvaluationException("Not valid input: " + tokenizer.getToken());
       }
     } else if (tokenizer.isNumber() == true) {
       double result=tokenizer.getNumber();
@@ -202,10 +250,11 @@ public class Parser {
     } else if (tokenizer.getChar() == '-') {
       tokenizer.nextToken();
       double result = (-1)*this.primary();
-      variables.put("ans", result);
       return result;
     }
-    throw new SyntaxException("Unexpected input");
+    throw new SyntaxException(synExc + "Unexpected input" + 
+                                  synExc1 + tokenizer.getToken() + 
+                                  synExc2 + tokenizer.getPreviousToken());
   }
   
 } 
