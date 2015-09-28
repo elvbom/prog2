@@ -91,8 +91,6 @@ public class BinarySearchTreeTest {
       anotherNonEmptyTree.equals(nonEmptyTree));
     nonEmptyTree.insert("Tarfala");
     System.out.println(anotherNonEmptyTree.equals(nonEmptyTree));
-    System.out.println(anotherNonEmptyTree);
-    System.out.println(nonEmptyTree);
     assertFalse("Twice modified non-empty tree equals copy of itself",
       anotherNonEmptyTree.equals(nonEmptyTree));
   }

@@ -161,15 +161,10 @@ public class ListTest {
     public void testInsertIter() {
       List anotherList = new List();
       anotherList.insertIter(5);
-      System.out.println(anotherList);
       anotherList.insertIter(8);
-      System.out.println(anotherList);
       anotherList.insertIter(2);
-      System.out.println(anotherList);
       anotherList.insertIter(6);
-      System.out.println(anotherList);
       anotherList.insertIter(7);
-      System.out.println("nu borjar det SPANNANDE!");
       System.out.println(anotherList);
       assertEquals("first after insertIter", 2, anotherList.removeFirst());
       assertEquals("second after insertIter", 5, anotherList.removeFirst());

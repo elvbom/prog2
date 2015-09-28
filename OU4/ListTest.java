@@ -165,7 +165,6 @@ public class ListTest {
       anotherList.insertIter(2);
       anotherList.insertIter(6);
       anotherList.insertIter(7);
-      System.out.println(anotherList);
       assertEquals("first after insertIter", 2, anotherList.removeFirst());
       assertEquals("second after insertIter", 5, anotherList.removeFirst());
       assertEquals("third after insertIter", 6, anotherList.removeFirst());
