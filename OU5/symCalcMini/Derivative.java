@@ -1,45 +1,70 @@
-import java.io.*; 
-import java.text.*; 
+/**
+ * Represents an deriva
+ */
+import java.util.Map;
 
-public class Derivative {
+class Differentiation extends Binary {
+  public Differentiation(Sexpr left, Sexpr right) {
+    super(left, right);
+  }
   
-    public static void main (String args[]) 
-    { 
- try 
- { 
-     BufferedReader br = new BufferedReader (new InputStreamReader (System.in)); 
-     DecimalFormat df = new DecimalFormat ("#.####"); 
-     System.out.print ("Enter the highest degree of the polynomial: "); 
-     int a = Integer.parseInt (br.readLine ()); 
-     double coefficient[] = new double [a + 1]; 
-     double dxdy[] = new double [a]; 
-     for (int i = 0 ; i <= a ; i++) 
-     { 
-  System.out.print ("Enter number: "); 
-  coefficient [i] = Double.parseDouble (br.readLine ()); 
-     } 
-     int ce = a; 
-     for (int j = 0 ; j < a ; j++) 
-     { 
-  dxdy [j] = coefficient [j] * ce; 
-  ce--; 
-     } 
-     System.out.print ("Derivative of Function: "); 
-     if (a != 0) 
-     { 
-  for (int k = 0 ; k < a ; k++) 
-  { 
-      System.out.print (df.format (dxdy [k]) + " "); 
-  } 
-     } 
-     else 
-     { 
-  System.out.print (0); 
-     } 
- } 
- catch (Exception e) 
- { 
-     System.exit (0); 
- } 
-    } 
+  public String getName() {
+    return "";
+  }
+  
+  public int priority() {
+    return 40;
+  }
+  
+  public Sexpr eval(Map<String, Sexpr> v) {
+    Sexpr e = left.eval(v);
+    return e.diff(right);
+  }
+  
 }
+//
+//import java.io.*; 
+//import java.text.*; 
+//
+//public class Derivative {
+//  
+//    public static void main (String args[]) 
+//    { 
+// try 
+// { 
+//     BufferedReader br = new BufferedReader (new InputStreamReader (System.in)); 
+//     DecimalFormat df = new DecimalFormat ("#.####"); 
+//     System.out.print ("Enter the highest degree of the polynomial: "); 
+//     int a = Integer.parseInt (br.readLine ()); 
+//     double coefficient[] = new double [a + 1]; 
+//     double dxdy[] = new double [a]; 
+//     for (int i = 0 ; i <= a ; i++) 
+//     { 
+//  System.out.print ("Enter number: "); 
+//  coefficient [i] = Double.parseDouble (br.readLine ()); 
+//     } 
+//     int ce = a; 
+//     for (int j = 0 ; j < a ; j++) 
+//     { 
+//  dxdy [j] = coefficient [j] * ce; 
+//  ce--; 
+//     } 
+//     System.out.print ("Derivative of Function: "); 
+//     if (a != 0) 
+//     { 
+//  for (int k = 0 ; k < a ; k++) 
+//  { 
+//      System.out.print (df.format (dxdy [k]) + " "); 
+//  } 
+//     } 
+//     else 
+//     { 
+//  System.out.print (0); 
+//     } 
+// } 
+// catch (Exception e) 
+// { 
+//     System.exit (0); 
+// } 
+//    } 
+//}

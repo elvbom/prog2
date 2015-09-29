@@ -23,10 +23,9 @@ public class StackPlay {
     * @param n the number of integers to be moved
     */
    public static void move(SpecialStack from, SpecialStack to, SpecialStack help, int n) {
-     move = move + 1; //FIXME hur kan detta inte vara ratt???
+     move = move + 1;
      if (n == 1) {
        to.push(from.pop());
-       move = move + 1; 
      } else {
        move(from, help, to, n-1);
        to.push(from.pop());

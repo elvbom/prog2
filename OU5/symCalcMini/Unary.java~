@@ -10,10 +10,6 @@ public abstract class Unary
     this.operand = operand;
   }
   
-  public int priority() {
-    return 80;
-  }
-  
   public String toString() {
     return getName() + "(" + operand + ")";
   }
