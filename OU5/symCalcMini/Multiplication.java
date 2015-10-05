@@ -23,7 +23,7 @@ public class Multiplication
   }
 
   public Sexpr diff(Sexpr v) {
-    return Symbolic.add( Symbolic.mul(left.diff(v), right), Symbolic.mul(left, right.diff(v)));
+    return Symbolic.add(Symbolic.mul(left.diff(v), right), Symbolic.mul(left, right.diff(v)));
   }
 
 }

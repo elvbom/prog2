@@ -30,9 +30,5 @@ public class Constant extends Atom {
   public Sexpr eval(Map<String,Sexpr> map) {
     return this;
   }
-  
-  public Sexpr diff(Sexpr x) {
-    return new Constant(0);
-  }
 }
   

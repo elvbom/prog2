@@ -25,12 +25,9 @@ public class Variable
   }
   
   public Sexpr diff(Sexpr x){
-    if (this.getName().equals(x.getName())) {
+    if (this.getName().equals(x.getName()))
       return new Constant(1);
-    } else {
+    else
       return new Constant(0);
-    }
   }
-  
 }
-  

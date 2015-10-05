@@ -1,19 +1,20 @@
 /**
- * Represents an differentiation
+ * Represents a dervivative
  */
 import java.util.Map;
 
 class Differentiation extends Binary {
+  
   public Differentiation(Sexpr left, Sexpr right) {
     super(left, right);
   }
   
   public String getName() {
-    return "";
+    return "diff";
   }
   
   public int priority() {
-    return 40;
+    return 70;
   }
   
   public Sexpr eval(Map<String, Sexpr> v) {

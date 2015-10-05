@@ -10,48 +10,48 @@ public class Symbolic {
    */
   public static Sexpr add(Sexpr left, Sexpr right) {
     if (left.isConstant() && right.isConstant()) {
-      if(left.getValue() == right.getValue()) {
+      if(left.getValue() == right.getValue())
         return new Constant(2*left.getValue());
-      } else if(left.getValue() == 0) {
+      else if(left.getValue() == 0)
         return new Constant(right.getValue());
-      } else if(right.getValue() == 0) {
+      else if(right.getValue() == 0)
         return new Constant(left.getValue());
-      } else {
+      else
         return new Constant(left.getValue() + right.getValue());
-      }
-    } else {
-      if(left == right) {
+    }
+    else {
+      if(left == right)
         return new Multiplication(new Constant(2), left);
-      } else if(left.isConstant() || right.isConstant()) {
+      else if(left.isConstant() || right.isConstant()) {
         if(left.isConstant()) {
-          if(left.getValue() == 0) {
+          if(left.getValue() == 0)
             return right;      
-          }
         }
-        if (right.isConstant()) {
-          if(right.getValue() == 0) {
+        if(right.isConstant()) {
+          if(right.getValue() == 0)
             return left;
-          }
         }
-      } else {
-        return new Addition(left, right);
       }
+      else
+        return new Addition(left, right);
     }
     return new Addition(left, right);
   }
   
+  
+  
   /**
-   * Perform a symbolic/numeric subtraction
+   * Perform a symbolic/numeric addition
    * Note: The method should be elaborated to handle
    * handle several special cases (e.g addititon of zero)
    */
   public static Sexpr sub(Sexpr left, Sexpr right) {
-    if (left.isConstant() && right.isConstant()) {
-      return new Constant(left.getValue() - right.getValue());
-    } else {
-      return new Addition(left, right); 
-    }
+    if (left.isConstant() && right.isConstant())
+      return new Constant(left.getValue()- right.getValue());
+    else
+      return new Addition(left, right);
   }
+  
   
   /**
    * Perform a symbolic/numeric multiplication
@@ -59,67 +59,55 @@ public class Symbolic {
    * special cases (e.g multiplication with zero or one)
    */
   public static Sexpr mul(Sexpr left, Sexpr right) {
-    if (left.isConstant() && right.isConstant()) {
-      if (left.getValue() == 0 || right.getValue() == 0) {
-        return new Constant(0);
-      } else {
+    if (left.isConstant() || right.isConstant()) {
+      if (left.isConstant()) {
+        if (left.getValue() == 0)
+          return new Constant(0);
+        if (left.getValue() == 1)
+          return right;
+      }
+      if (right.isConstant()) {
+        if (right.getValue() == 0)
+          return new Constant(0);
+        if (right.getValue() == 1)
+          return left;
+      }
+      if (left.isConstant() && right.isConstant()) {
         return new Constant(left.getValue() * right.getValue());
       }
     } else {
-      if(left.isConstant() || right.isConstant()) {
-        if(left.isConstant()) {
-          if(left.getValue() == 0) {
-            return new Constant(0);
-          }
-          if (left.getValue() == 1) {
-            return right;
-          }
-        }
-        if(right.isConstant()) {
-          if(right.getValue() == 0) {
-            return new Constant(0);
-          }
-          if(right.getValue() == 1) {
-            return left;
-          }
-        }
-      } else {
-        return new Multiplication(left, right);
-      }
+      return new Multiplication(left, right);
     }
     return new Multiplication(left, right);
   }
+  
+  
   
   /**
    * Perform a symbolic/numeric division
    * Note: The method should be elaborated to handle several
    * special cases (e.g division with zero)
    //   */
-//  public static Sexpr div(Sexpr left, Sexpr right) {
-//    if (right.getValue()==0)
-//      throw new SyntaxException("Can't divide by 0");
-//    else if (right.getValue()==1)
-//      return left;
-//    else if (left.isConstant() && right.isConstant())
-//      return new Constant(left.getValue() / right.getValue());
-//    else
-//      return new Division(left, right);
-//  }
   public static Sexpr div(Sexpr left, Sexpr right) {
-    if (left.isConstant() && right.isConstant())
+    if (right.getValue() == 0) {
+      throw new SyntaxException("Division with 0 not permitted");
+    } else if (right.getValue() == 1) {
+      return left;
+    } else if (left.isConstant() && right.isConstant()) {
       return new Constant(left.getValue() / right.getValue());
-    else
+    } else {
       return new Division(left, right);
+    }
   }
   
   /**
    * Perform a symbolic/numeric negation
    */  
-  public static Sexpr negate(Sexpr operand) {
-    if (operand.isConstant())
-      return new Constant(-operand.getValue());
+  public static Sexpr negate(Sexpr argument) {
+    if (argument.isConstant())
+      return new Constant(-argument.getValue());
     else
-      return new Negation(operand);
+      return new Negation(argument);
   }
   
   public static Sexpr exp(Sexpr arg) {
@@ -152,6 +140,7 @@ public class Symbolic {
     else
       return new Cos(arg);
   }
-  
-  
 }
+
+
+

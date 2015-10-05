@@ -3,7 +3,6 @@ import java.util.*;
 public class StackPlay {
    private static long move;
    private ArrayList<Integer> stack;
-   // staticmetod inte forknippad med speciellt objekt, kan ej komma at de instansvari, 
    
    /**
     * Returns the current number of times the method move
@@ -23,12 +22,13 @@ public class StackPlay {
     * @param n the number of integers to be moved
     */
    public static void move(SpecialStack from, SpecialStack to, SpecialStack help, int n) {
-     move = move + 1;
      if (n == 1) {
        to.push(from.pop());
+       move = move + 1;
      } else {
        move(from, help, to, n-1);
        to.push(from.pop());
+       move = move + 1;
        move(help, to, from, n-1);
      }
    }

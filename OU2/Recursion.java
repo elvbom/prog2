@@ -141,7 +141,7 @@ public class Recursion {
   
   
   public static void main(String[] args) {
-    System.out.println("Time for fib(50): " + fibTime(50));
+    System.out.println("Time for fib(45): " + fibTime(45));
     System.out.println("Time for fib(100): " + fibTime(100));
   }
   

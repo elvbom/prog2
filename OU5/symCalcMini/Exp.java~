@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class Exp extends Function {
   
-  public Exp(Sexpr argument) {
-    super(argument);
+  public Exp(Sexpr operand) {
+    super(operand);
   }
   
   public String getName() {
@@ -14,10 +14,11 @@ public class Exp extends Function {
   }
   
   public Sexpr eval(Map<String,Sexpr> map) {
-    return Symbolic.exp(argument.eval(map));
+    return Symbolic.exp(operand.eval(map));
   }
   
   public Sexpr diff(Sexpr v) {
-return Symbolic.mul(argument.diff(v), new Exp(argument));
- }
+    System.out.print("exp diff");
+    return Symbolic.exp(operand.diff(v));
+  }
 }

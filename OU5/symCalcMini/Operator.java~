@@ -9,7 +9,7 @@ public abstract class Operator
   }
   
   public String toString() {
-    if (this.priority() > operand.priority())
+    if ( this.priority() > operand.priority())
       return getName() + "(" + operand + ")";
     else
       return getName() + operand;

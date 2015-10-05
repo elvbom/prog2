@@ -10,16 +10,16 @@ class Differentiation extends Binary {
   }
   
   public String getName() {
-    return "";
+    return "diff";
   }
   
   public int priority() {
-    return 60;
+    return 70;
   }
   
   public Sexpr eval(Map<String, Sexpr> v) {
     Sexpr e = left.eval(v);
     return e.diff(right);
   }
-  
+
 }

@@ -84,13 +84,12 @@ public class Recursion {
       return fib(n-1) + fib(n-2);
   }
   
-  public static void fibTime(int n) {
+  public static long fibTime(int n) {
     long startTime = System.currentTimeMillis();
     fib(n);
     long endTime = System.currentTimeMillis();
     long timeDiff = (endTime- startTime)/1000;
-    System.out.println("Fib took " + timeDiff +"s");
-    
+    return timeDiff;
   }  
   
   public static void sort(double [] a, int n) {
@@ -106,8 +105,6 @@ public class Recursion {
     }
   }
   
-  // FIXME ovning 12!
-  
   static String reverseInt(int x) {
     String xstr = "" + x;
     String xrev = "";
@@ -118,36 +115,39 @@ public class Recursion {
     return reverseInt(x%10);
   }
   
-//FIXME?
-  public static void reversDigits(long number) {
-    if (number < 10) {
-      System.out.println(number);
-      return;
-    }
-    else {
-      System.out.println(number % 10);
-      reversDigits(number/10);
-    }
-  }
-  
-//  FIXME
-//  static String longToString(long x, int b) {
-//    //returnera representation av talet x i basen b. b ar lika med eller mindre an 16
+//  //FIXME?
+//  public static void reversDigits(long number) {
+//    if (number < 10) {
+//      System.out.println(number);
+//      return;
+//    }
+//    else {
+//      System.out.println(number % 10);
+//      reversDigits(number/10);
+//    }
 //  }
   
-  
-//FIXME
   public static String reverseNumbers(Scanner scan) {
-    if (scan.hasNextInt() != true )
+    if (scan.hasNextInt() != true)
       return "";   
     else {
       String rev = "\n";
       int i = scan.nextInt();
       rev = " " + i + rev;
-      //reverse();
+      rev = reverseNumbers(scan);
       return rev;
     }
   }
   
+  
+  public static void main(String[] args) {
+    System.out.println("Time for fib(50): " + fibTime(50));
+    System.out.println("Time for fib(100): " + fibTime(100));
+  }
+  
+  //Övning 12: Tid för stora sorteringar med insticks- respektive samsortering:
+  //Algoritm 1: cf(n^2)
+  //Algoritm 2: cf(n log n)
+  //Algoritm 2 kommer vaxa valdigt mkt saktare
   
 }

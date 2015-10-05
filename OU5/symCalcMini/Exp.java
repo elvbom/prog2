@@ -18,6 +18,8 @@ public class Exp extends Function {
   }
   
   public Sexpr diff(Sexpr v) {
+    System.out.println(operand.diff(v));
+    System.out.println(new Exp(operand));
     return Symbolic.mul(operand.diff(v), new Exp(operand));
   }
 }
