@@ -10,7 +10,7 @@ class Differentiation extends Binary {
   }
   
   public String getName() {
-    return "diff";
+    return "'";
   }
   
   public int priority() {

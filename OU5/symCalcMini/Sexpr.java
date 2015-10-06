@@ -25,6 +25,10 @@ public abstract class Sexpr {
     return 100; 
   }
   
+  public boolean equals(Sexpr s) {
+    return false; 
+  }
+  
   /**
    * Differentiation operation
    * @return The derivative

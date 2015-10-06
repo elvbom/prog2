@@ -10,17 +10,10 @@ public class Symbolic {
    */
   public static Sexpr add(Sexpr left, Sexpr right) {
     if (left.isConstant() && right.isConstant()) {
-      if(left.getValue() == right.getValue())
-        return new Constant(2*left.getValue());
-      else if(left.getValue() == 0)
-        return new Constant(right.getValue());
-      else if(right.getValue() == 0)
-        return new Constant(left.getValue());
-      else
-        return new Constant(left.getValue() + right.getValue());
+      return new Constant(left.getValue() + right.getValue());
     }
     else {
-      if(left == right)
+      if(left.equals(right))
         return new Multiplication(new Constant(2), left);
       else if(left.isConstant() || right.isConstant()) {
         if(left.isConstant()) {
@@ -49,7 +42,7 @@ public class Symbolic {
     if (left.isConstant() && right.isConstant())
       return new Constant(left.getValue()- right.getValue());
     else
-      return new Addition(left, right);
+      return new Subtraction(left, right);
   }
   
   
@@ -120,7 +113,7 @@ public class Symbolic {
   public static Sexpr log(Sexpr arg) {
     if (arg.isConstant())
       if (arg.getValue()<0)
-      throw new SyntaxException("Can't take log of a negative number");
+      throw new SyntaxException("Log of negative number not permitted");
     else
       return new Constant(Math.log(arg.getValue()));
     else

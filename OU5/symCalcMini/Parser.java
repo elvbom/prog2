@@ -67,7 +67,7 @@ public class Parser {
       tokenizer.nextToken();
       if (c == '*') {
         prod = new Multiplication(prod, factor());
-      } else { //FIXME har kan jag lagga in sa att division m 0 inte ar OK
+      } else {
         prod = new Division(prod, factor());
       }
     }

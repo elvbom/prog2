@@ -37,7 +37,7 @@ public abstract class Sexpr {
    * @return The numeric value of a Constant object
    */
   public double getValue() {
-    throw new InternalErrorException( getName() + " does not have a value");
+    throw new InternalErrorException(getName() + " does not have a value");
   }
   
   /**

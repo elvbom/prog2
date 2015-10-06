@@ -67,7 +67,7 @@ public class Parser {
       tokenizer.nextToken();
       if (c == '*') {
         prod = new Multiplication(prod, factor());
-      } else { 
+      } else { //FIXME har kan jag lagga in sa att division m 0 inte ar OK
         prod = new Division(prod, factor());
       }
     }
@@ -75,8 +75,7 @@ public class Parser {
   }
     
   /**
-   * Handles a differentiation:
-   * <primary>[' <variable> [' <variable> ...]]
+   * Handles a differentiation
    */
   public Sexpr factor() {
     Sexpr result = primary();

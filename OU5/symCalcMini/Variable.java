@@ -3,9 +3,7 @@
  */
 import java.util.Map;
 
-public class Variable
-  extends Atom
-{
+public class Variable extends Atom {
   private String name;
   
   public Variable(String name) {
@@ -24,10 +22,18 @@ public class Variable
     }
   }
   
+  public boolean equals(Sexpr x) {
+    return this.getName().equals(x.getName());
+  }
+  
   public Sexpr diff(Sexpr x){
-    if (this.getName().equals(x.getName()))
+    if (this.getName().equals(x.getName())) {
       return new Constant(1);
-    else
+    } else {
       return new Constant(0);
+    
+    
+    
+    }
   }
 }
